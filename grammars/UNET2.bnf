@@ -1,0 +1,20 @@
+<predefined> ::='''def UNET(input_size=(592,592,3)):\n\tinputs = Input(input_size)\n\tx=inputs\n\t<unet>\n\toutputs=Conv2D(1, (1, 1), padding="same", activation= <activation>, data_format=None)(x)\n\tmodel = Model(inputs = [inputs], outputs = [outputs])\n\tmodel.compile(optimizer = <optimisation>, loss = 'binary_crossentropy', metrics = ['accuracy'])\n\tmodel.summary()\n\treturn model\n
+'''
+<unet> ::= x=conv2d_block(<filters>,<kernel_size>, activation = <activation>,<pooling_type>,<network_depth>,<drop_type>) ; <spatial> ; x= upsample_conv(<filters>,<kernel_size>,<drop_type>,<padding>)
+<spatial> ::= <sp> | <conv>
+<sp> ::= x = spatial_attention(x)
+<conv> ::= x = Conv2D(<filters>,<kernel_size>, activation = <activation>, padding = <padding>, kernel_initializer = 'he_normal')(x)
+<network_depth> ::= 1 | 2 | 3 | 4
+<drop_type> ::= <Dropout> | <DropBlock>
+<Batch> ::= x = BatchNormalization()(x)
+<DropBlock> ::= x = DropBlock2D(block_size = <block_size>, keep_prob = <keep_prob>)(x)
+<Dropout> ::= x = Dropout(<rate>)(x)
+<activation> ::= 'relu' | 'sigmoid' | 'softmax' | 'softplus' | 'softsign' | 'tanh' | 'selu' | 'elu' | 'LeakyReLU'
+<pooling_type> ::= 1 | 2
+<rate> ::= 0.4 | 0.5 | 0.6
+<optimisation> ::= 'Adam' | 'sgd' | 'adamax' | 'adagrad' | 'Nadam' | 'Ftrl' | 'Adadelta' | 'RMSprop'
+<filters> ::= 16 | 32 | 64 | 128 | 256
+<kernel_size> ::= (1, 1) | (2, 2) | (3, 3) | (5, 5)
+<block_size> ::= 7 | 9
+<keep_prob> ::= 0.8 | 0.9
+<padding> ::= "valid" | "same"
