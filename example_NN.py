@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-@author: Aidan, Allan & Mahsa
-"""
+
 import sys
 sys.path.insert(0, './')
 
@@ -398,7 +396,7 @@ problem = 'SA-UNET'
 
 if problem == 'SA-UNET':
 
-    BNF_GRAMMAR = grape.Grammar(r"grammars/UNET.bnf")
+    BNF_GRAMMAR = grape.Grammar(r"grammars/UNET2.bnf")
 
     X_train = x_train
     Y_train = y_train
